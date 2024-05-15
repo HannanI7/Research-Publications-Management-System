@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <!-- website logo -->
+        <h1>ScholarFlow.</h1>
+    </header>
+    
+    <div class="profile">
+        <h1>User Profile</h1>
+        <p style="text-align: center;"><strong>Username:</strong> {{ username }}</p>
+        <p style="text-align: center;"><strong>User Type:</strong> {{ usertype }}</p>
+        
+        <h2>Publications</h2>
+        <div class="publication-grid">
+            {% for publication in publications %}
+            <div class="card">
+                <h3>{{ publication['title'] }}</h3>
+                <p><strong>JCR IF:</strong> {{ publication['jcr_if'] }}</p>
+                <p><strong>Type:</strong> {{ publication['type'] }}</p>
+                <p><strong>Status:</strong> {{ publication['status'] }}</p>
+                <p><strong>Authors:</strong> {{ publication['authors'] }}</p>
+                <p><strong>Publisher:</strong> {{ publication['publisher'] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

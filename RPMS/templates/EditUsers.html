@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Edit Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <!-- website logo -->
+        <h1>ScholarFlow.</h1>
+    </header>
+    
+    <h1>Edit Users</h1><br>
+    <ul>
+        <!-- Loop through users and display edit buttons -->
+        {% for user in users %}
+        <li>
+            <span>{{ user['username'] }}</span>
+            <span>{{ user['usertype'] }}</span>
+            <button class="edit-btn" data-username="{{ user['username'] }}">Edit</button>
+            <form class="edit-form" data-username="{{ user['username'] }}" style="display: none;" action="{{ url_for('submit_edit_user') }}" method="post">
+                <!-- Form fields for editing user -->
+                <input type="hidden" name="username" value="{{ user['username'] }}"> <!-- Hidden input to store original username -->
+                <label for="new_username">New Username:</label>
+                <input type="text" id="new_username" name="new_username" value="{{ user['username'] }}"><br>
+                <label for="new_usertype">New Usertype:</label>
+                <select id="new_usertype" name="new_usertype">
+                    <option value="admin" {% if user['usertype'] == 'admin' %} selected {% endif %}>Admin</option>
+                    <option value="reviewer" {% if user['usertype'] == 'reviewer' %} selected {% endif %}>Reviewer</option>
+                </select><br>
+                <!-- Add other fields as needed -->
+                <button type="submit">Save</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        // Add event listener to all edit buttons
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the username associated with the button
+                var username = button.getAttribute('data-username');
+                // Toggle the visibility of the corresponding edit form
+                var form = document.querySelector('.edit-form[data-username="' + username + '"]');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

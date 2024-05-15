@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="../static/style.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body>
+		<header>
+			<!-- website logo -->
+			<h1>ScholarFlow.</h1>
+		</header>
+
+		<div class="centered">
+			<div class="login">
+				<h1>Login</h1>
+				<div class="links">
+					<a href="{{ url_for('login') }}" class="active">Login</a>
+					<a href="{{ url_for('register_page') }}">Register</a> <!-- Link to the registration page -->
+				</div>
+				<form action="{{ url_for('login') }}" method="post">
+					<label for="username">
+						<i class="fas fa-user"></i>
+					</label>
+					<input type="text" name="username" placeholder="Username" id="username" required>
+					<label for="password">
+						<i class="fas fa-lock"></i>
+					</label>
+					<input type="password" name="password" placeholder="Password" id="password" required>
+					<div class="msg">{{ msg }}</div>
+					<!-- Add dropdown selection for choosing between Admin and Reviewer -->
+					<label for="user-type">User Type:</label>
+					<select name="user-type" id="user-type">
+						<option value="admin">Admin</option>
+						<option value="reviewer">Reviewer</option>
+					</select>
+					<input type="submit" value="Login">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

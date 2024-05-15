@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Research Publications Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- website logo -->
+        <h1>ScholarFlow.</h1>
+        <nav>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('add_publication_form') }}">Add Publication</a>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <h1>Research Publications</h1><br><br><hr>
+        <div>
+            <div>
+                <!-- Search form -->
+                <form id="search-form" action="{{ url_for('search_publications') }}" method="GET">
+                    <input type="text" id="search-term" name="search_term" placeholder="Enter search term">
+                    <select id="search-parameter" name="search_parameter">
+                        <option value="title">Title</option>
+                        <option value="jcr_if">JCR IF</option>
+                        <option value="type">Type</option>
+                        <option value="status">Status</option>
+                        <option value="authors">Authors</option>
+                        <option value="publisher">Publisher</option>
+                    </select>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="publication-grid">
+            {% for publication in publications %}
+            <div class="card">
+                <h2>{{ publication['title'] }}</h2>
+                <p><strong>JCR IF:</strong> {{ publication['jcr_if'] }}</p>
+                <p><strong>Type:</strong> {{ publication['type'] }}</p>
+                <p><strong>Status:</strong> {{ publication['status'] }}</p>
+                <p><strong>Authors:</strong> {{ publication['authors'] }}</p>
+                <p><strong>Publisher:</strong> {{ publication['publisher'] }}</p>
+                {% if 'reviewer' in session.usertype and session.username in publication['authors'] %}
+                <form action="{{ url_for('submit_edit_request') }}" method="post">
+                    <input type="hidden" name="title" value="{{ title }}">
+                    <label for="jcr_if">JCR IF:</label>
+                    <input type="text" id="jcr_if" name="jcr_if" value="{{ publication['jcr_if'] }}"><br>
+                    <label for="type">Type:</label>
+                    <input type="text" id="type" name="type" value="{{ publication['type'] }}"><br>
+                    <label for="status">Status:</label>
+                    <input type="text" id="status" name="status" value="{{ publication['status'] }}"><br>
+                    <label for="authors">Authors:</label>
+                    <input type="text" id="authors" name="authors" value="{{ publication['authors'] }}"><br>
+                    <label for="publisher">Publisher:</label>
+                    <input type="text" id="publisher" name="publisher" value="{{ publication['publisher'] }}"><br>
+                    <button type="submit" class="btn">Submit Edit Request</button>
+                </form>
+                {% endif %}
+                <button class="delete-btn" data-title="{{ publication['title'] }}">Delete</button>
+                <button class="edit-btn" data-title="{{ publication['title'] }}">Edit</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+    $(document).ready(function() {
+        // Delete button click handler
+        $('.delete-btn').click(function() {
+            var title = $(this).data('title');
+            if (confirm("Are you sure you want to delete this publication?")) {
+                $.ajax({
+                    url: '/delete_publication',
+                    type: 'POST',
+                    data: { title: title },
+                    success: function(response) {
+                        location.reload(); // Refresh the page after deletion
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        });
+        
+        // Edit button click handler
+        $('.edit-btn').click(function() {
+            var title = $(this).data('title');
+            window.location.href = '/edit_publication?title=' + encodeURIComponent(title);
+        });
+        
+        // Add new publication button click handler
+        $('#add-new-btn').click(function() {
+            window.location.href = '/add_publication_form';
+        });
+    });
+    </script>
+</body>
+</html>

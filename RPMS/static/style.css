@@ -1,0 +1,354 @@
+/* ------ Importing font (Poppins) ------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --blue: #01587b;
+    --white: #ffffff;
+    --black: #000000;
+    --dark-blue: #00415a;
+    --grey: rgb(40,40,40);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f4f4; /* Light grey background */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    font-family:'Poppins', 'Times New Roman';
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+hr {
+    margin: 2rem 1rem;
+}
+
+/* ------ Header CSS ------ */
+header {
+    border-bottom: 2px solid black;
+    height: 10vh;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.5) ;
+    background-color: #01587b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3%;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+header nav {
+    display: flex;
+    align-items: center ;
+    gap: 1rem;
+}
+
+header a {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    color: var(--white);
+}
+
+header nav a:hover {
+    background-color: var(--dark-blue);
+    border-radius: 1.2rem;
+    color: white;
+}
+
+/* ------ Header CSS end ------ */
+
+/* ------ Login CSS ------ */
+.login {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 300px; 
+}
+
+.login h1 {
+    text-align: center;
+    color: #333; 
+    margin-bottom: 20px; 
+}
+
+.links a {
+    color: var(--blue); 
+    text-decoration: none; 
+    margin-right: 10px;
+}
+
+.links a.active {
+    font-weight: bold; 
+    color: var(--dark-blue); 
+}
+
+form {
+    display: flex; 
+    flex-direction: column; 
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: var(--blue); 
+    color: white; 
+    border: none; 
+    padding: 10px;
+    cursor: pointer; 
+    border-radius: 5px; 
+    margin-top: 10px; 
+}
+
+input[type="submit"]:hover {
+    background-color: var(--dark-blue); 
+}
+
+.fas {
+    margin-right: 5px; 
+}
+
+.msg {
+    color: red; 
+    margin-bottom: 10px; 
+}
+
+/* ------ Login css end ------ */
+
+/* ------ Admin Profile Css ------ */
+.admin-profile {
+    background-color: #ffffff; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    width: 300px; 
+    padding: 1.5rem;
+}
+
+.admin-profile h1 {
+    text-align: center; 
+    color: #333; 
+    margin-bottom: 20px; 
+}
+
+.admin-profile p {
+    color: #666; 
+    font-size: 16px; 
+    line-height: 1.5; 
+    text-align: left; 
+}
+
+.btn {
+    background-color: var(--blue); 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; 
+    width: 100%; 
+    margin-top: 10px; 
+    box-sizing: border-box; 
+    display: block; 
+}
+
+.btn:hover {
+    background-color: var(--dark-blue); 
+}
+/* ------ Admin Profile Css end ------ */
+
+/* ------ edit users Css ------ */
+h1 {
+    text-align: center;
+    color: #333; 
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+li {
+    background-color: #ffffff; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+li span {
+    display: inline-block; 
+    width: 150px; 
+    font-weight: bold; 
+}
+
+.edit-btn {
+    background-color: var(--blue); 
+    color: white; 
+    border: none; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+    border-radius: 3px; 
+}
+
+.edit-btn:hover {
+    background-color: var(--dark-blue); 
+}
+
+.edit-form {
+    margin-top: 10px; 
+}
+
+.edit-form label {
+    display: block; 
+    margin-bottom: 5px; 
+}
+
+.edit-form input,
+.edit-form select {
+    width: 200px; 
+    padding: 8px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 3px;
+}
+
+.edit-form button[type="submit"] {
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+    padding: 8px 15px; 
+    cursor: pointer; 
+    border-radius: 3px; 
+}
+
+.edit-form button[type="submit"]:hover {
+    background-color: #218838; 
+}
+/* ------ edit user Css end ------ */
+
+/* ------ dasboard Css ------ */
+.dashboard {
+    padding: 2rem;
+}
+.dashboard h1 {
+    text-align: center; 
+    color: #333; 
+    font-size: 1.5rem;
+}
+
+.dashboard .centered {
+    height: auto;
+    border-bottom: 2px solid black;
+    margin-bottom: 2rem;
+}
+#search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-form button {
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 3px;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 600;
+}
+
+.btn,
+.link-btn,
+.delete-btn,
+.edit-btn {
+    background-color: var(--blue); 
+    color: white; 
+    border: none; 
+    padding: 8px 15px; 
+    cursor: pointer; 
+    border-radius: 3px; 
+    width: auto;
+}
+
+.btn:hover,
+.link-btn:hover,
+.delete-btn:hover,
+.edit-btn:hover {
+    background-color: var(--dark-blue);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form select {
+    width: auto; 
+    padding: 8px 15px; 
+    border: 1px solid #ccc;
+    border-radius: 3px; 
+}
+
+.publication-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px; 
+}
+
+.card {
+    background-color: #ffffff; 
+    padding: 10px; 
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 10px; 
+}
+
+.card p {
+    margin-bottom: 5px; 
+}
+/* ------ dasboard Css end ------ */
+
+.edit-publication form input {
+    margin: 0rem;
+}
+.edit-publication form label {
+    margin: 0rem;
+}
+
+.add-publication form label {
+    margin: 0rem;
+}
+
+.add-publication form input {
+    margin: 0rem;
+}
+
+.profile {
+    margin: 2rem;
+}

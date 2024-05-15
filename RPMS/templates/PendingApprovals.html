@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pending Approvals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <!-- website logo -->
+        <h1>ScholarFlow.</h1>
+    </header>
+    
+    <div class="centered">
+        <div class="Pending-Approvals">
+            <h1>Pending Approvals</h1>
+            <ul>
+                <!-- Loop through edit requests and display each one with an approval button -->
+                {% for request in edit_requests %}
+                <li>
+                    <h2>{{ request['title'] }}</h2>
+                    <p><strong>JCR IF:</strong> {{ request['jcr_if'] }}</p>
+                    <p><strong>Type:</strong> {{ request['type'] }}</p>
+                    <p><strong>Status:</strong> {{ request['status'] }}</p>
+                    <p><strong>Authors:</strong> {{ request['authors'] }}</p>
+                    <p><strong>Publisher:</strong> {{ request['publisher'] }}</p>
+                    <!-- Approve button -->
+                    <form action="{{ url_for('approve_request') }}" method="post">
+                        <input type="hidden" name="title" value="{{ request['title'] }}">
+                        <input type="hidden" name="jcr_if" value="{{ request['jcr_if'] }}">
+                        <input type="hidden" name="type" value="{{ request['type'] }}">
+                        <input type="hidden" name="status" value="{{ request['status'] }}">
+                        <input type="hidden" name="authors" value="{{ request['authors'] }}">
+                        <input type="hidden" name="publisher" value="{{ request['publisher'] }}">
+                        <button class="btn" type="submit" style="background-color: #28a745;">Approve</button>
+                    </form>
+                    <form action="{{ url_for('not_approved') }}" method="post" style="display: inline;">
+                        <input type="hidden" name="title" value="{{ request['title'] }}">
+                        <button class="btn" type="submit" style="background-color: red;">Reject</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

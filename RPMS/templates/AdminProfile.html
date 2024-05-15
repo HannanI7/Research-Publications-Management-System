@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header>
+        <!-- website logo -->
+        <h1>ScholarFlow.</h1>
+        <nav>
+            <a href="{{ url_for('edit_users') }}">Edit Users</a>
+            <a href="{{ url_for('pending_approvals') }}">Pending Approvals</a>
+        </nav>
+    </header>
+
+    <div class="centered">
+        <div class="admin-profile">
+            <h1>Admin Profile</h1>
+            <p><b>Username:</b> {{ admin_info['username'] }}</p>
+            <p><b>Usertype:</b> {{ admin_info['usertype'] }}</p>
+        </div>
+    </div>
+</body>
+</html>
